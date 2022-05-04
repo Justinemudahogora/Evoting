@@ -1,0 +1,101 @@
+.feat-card {
+    max-height: initial !important;
+    height: auto !important;
+}
+.feat-card {
+    padding: 25px;
+    background-color: #fff;
+    box-shadow: 0px 3px 14px 0px rgb(61 72 77 / 15%);
+    border-top: solid 6px #172f57;
+    max-height: initial;
+    height: auto;
+    width: 29%;
+    margin: 0 2%;
+    margin-bottom: 120px !important;
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.feat-card img {
+    width: 115px;
+    max-width: 100%;
+    padding: 10px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: bottom;
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+
+user agent stylesheet
+center {
+    display: block;
+    text-align: -webkit-center;
+}
+body {
+    background: #fff;
+    color: #666;
+    font-family: 'europa',sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+::selection {
+    color: #fff;
+    background: #666;
+    text-shadow: none;
+}
+.img-bg {
+    width: 129px;
+    max-width: 155px;
+    margin-top: -115px;
+}
+.img-bg {
+    background-color: #fff;
+    width: 155px;
+    max-width: 155px;
+    padding: 22px;
+    border-radius: 50%;
+    margin-top: -113px;
+    box-shadow: 2px 2px 9px 3px rgb(23 47 87 / 24%);
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.feat-card-wrapper {
+    padding-top: 85px;
+    
+}
+
+.feat-card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+h4{
+    color: black;
+    font-weight: bold;
+}

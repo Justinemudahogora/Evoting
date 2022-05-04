@@ -1,0 +1,139 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Candidate</title>
+ <!-- Bootstrap -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+ <link href="css/styl.css" rel="stylesheet">
+ <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+ <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+ <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+ <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+ 
+ <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+ <script src="http://kit.fontawesome.com/278cdbab1b.js"></script>
+ <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+ <style>
+     @media screen and (min-width: 997px) {
+      .candidates {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex; } }
+    @media screen and (max-width: 996px) {
+        .candidates {
+          margin-bottom: 19px; 
+          margin-left: 34px;
+        }
+         }
+ </style>
+
+</head>
+<body>
+
+<div class="container">
+ <nav class="navbar navbar-default navbar-fixed-top navbar-inverse"role="navigation">
+   <div class="container">
+     <div class="navbar-header">
+       <a href="index.html" class="navbar-brand headerFont text-lg"><strong><i class="fas">&#xf015;</i>&nbsp;E_Voting</strong></a>
+       
+     </div>
+   </div> <!-- end of container -->
+  </nav>
+<br><br><br> <br> <b><h2 class="normalFont" style="font-size:40px; color: #043158;"><center>All Candidates</center></h2></b>
+
+<div class="candidates">
+    <!-- inject candidates here from js -->
+
+  </div>
+  <div class="col-sm-4"id="myForm" style="background-color:#043058;display:none;padding:50px;z-index: 1;position: relative;width:fit-content;margin-left:40%;border-radius: 20px;">
+     <label for=""style="color:#043058;color:#FFFFFF;">Email:</label>
+    <input id ="email"type="email" name="email" placeholder="Enter Your Email To Vote" class="form-control"><br>
+    <center><br><button onclick="sendEmail()" class="btn"style="color:#043058;background-color:#FFFFFF;">Submit</button>
+    <button type="button" class="btn cancel" onclick="closeForm()"style="color:#043058;background-color:#FFFFFF;">Cancel</button></center>
+
+    <div class="alert alert-danger alert-dismissable"  id="alert" style="display: none;">
+                
+      <button type="button" class="close" data-dismiss="alert"></button>
+      <span class="close">x</span>
+      <i style='font-size:24px' class="fa fa- icons">&#xf071;</i>
+      <span class="constTitle">Email Already Used</span>
+      
+    </div>
+</div>
+<div>
+  <canvas id="my_chart"height="90"></canvas>
+</div>
+
+<script src="candjs/index.js"></script>
+<script>
+  var candidat=null
+  var closebtns = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    document.getElementById("alert").style.display = "none";
+  });
+}
+  function openForm(candidate_id) {
+    document.getElementById("myForm").style.display = "block";
+candidat=candidate_id    
+  }
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+
+const createForm=document.getElementById('email');
+const sendEmail = async () => {
+  let emailvalue=document.getElementById("email").value
+  
+  let time=''
+  const res = await fetch('http://localhost:3000/myEmail/');
+  const emails_ = await res.json();
+  var email= await emails_.find(element => element.email== createForm.value);
+  console.log(emails_)
+  if(email){
+    document.getElementById("alert").style.display = "block";
+
+  }
+else{
+  // send mail
+ const respo= await fetch('http://localhost:3000/candidates/'+candidat)
+ const candidate=await respo.json()
+ var code =Math.floor((Math.random() * 1000) + 1)
+ let info = {
+  email: createForm.value,
+  candname:candidate.fname +candidate.lname,
+  time:new Date().toDateString()+new Date().toTimeString(),
+  code:code,
+};
+await Email.send({
+    Host : "smtp.gmail.com",
+    Username : "justinemudahogora7@gmail.com",
+    Password :"zpvcusqwscuzxdcg",
+    To : `${emailvalue}`,
+    From : "justinemudahogora7@gmail.com",
+    Subject : "E_Voting CODE",
+    Body :"Your Verification Code Is "+code,
+}).then(
+  message => alert("Check Verification Code sent on Your Email")
+);
+await fetch('http://localhost:3000/myEmail/', {
+    method: 'POST',
+  body: JSON.stringify(info),
+ headers: { 'Content-Type': 'application/json' },
+ }); 
+window.location.replace("/vote.html?email="+emailvalue+'&id='+candidat)
+  
+}
+};
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+  
+
+</body>
+</html>

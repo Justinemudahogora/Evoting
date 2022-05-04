@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
+    <script src="http://kit.fontawesome.com/278cdbab1b.js"></script>
+
+    <style>
+      .headerFont{
+        font-family: 'Playfair Display',sans-serif;
+        font-size: 24px;
+      }
+      .btn{
+        width:fit-content;
+      }
+      .subFont{
+        font-family: 'Playfair Display',sans-serif;
+        font-size: 14px;
+        
+      }
+      
+      .specialHead{
+        font-family: 'Playfair Display',sans-serif;
+        color:#043158;
+      }
+
+      .normalFont{
+        font-family: 'Playfair Display',sans-serif;
+      }
+      .col-sm-4{
+    border-radius: 4px;
+    box-shadow: 0 1px 5px rgba(0,0,0, 0.3);
+    width: 400px1;
+    height: 100%;
+    margin-left:30em;
+      }
+      .navbar{
+        margin-left: 2%;
+        margin-right: 2%;
+        background-color:#043158;
+        text-decoration-color: #FFFFFF;
+        border-color: #043158;
+      }
+      .alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.alert-dismissable {
+    padding-right: 35px;
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+.close {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0%;
+  padding: 12px 16px;
+  transform: translate(0%, -50%);
+}
+
+.close:hover {background: #bbb;}
+    </style>
+
+  </head>
+  <body>
+	
+	<div >
+  	<nav class="navbar navbar-default navbar-fixed-top navbar-inverse
+    " role="navigation">
+      <div class="container">
+        
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand headerFont text-lg"><strong style="color:white"><i class="fas">&#xf015;</i>&nbsp;E_Voting</strong></a>
+        </div>
+
+        
+
+      </div> <!-- end of container -->
+    </nav>
+
+    
+    <div class="container" style="padding-top:100px;">
+    	<div class="row justify-content-center">
+  
+    		<div class="col-md-4" style="border:2px solid #043158;padding:4%;">
+    			
+    			<div class="page-header">
+    				<h2 class="specialHead">Sign In</h2>
+    			</div>
+          <form action="#" method="POST">
+      			<div class="form-group">
+      				<label for="">Username</label><br>
+      				<input type="text" name="adminUserName" placeholder="Enter Your UserName" id="username"class="form-control" required><br>
+
+      				<label for="">Password</label><br>
+      				<input type="password" name="adminPassword" class="form-control" id="password" placeholder="Enter your Password" required><br>
+
+      				<center><input style="background:#043158" type="button" class="btn btn-block span btn-primary" id="submit" onclick="validate()" value="Sign In"/> </center>
+              <br>
+              <div class="alert alert-danger alert-dismissable"  id="alert" style="display: none;">
+                
+                <button type="button" class="close" data-dismiss="alert"></button>
+                <span class="close">x</span>
+                <i style='font-size:24px' class="fa fa- icons">&#xf071;</i>
+                <span class="constTitle">Username/Password Mismatch</span><br>The given password does not belong to the username.
+              </div>
+      			</div>
+
+          </form>
+          <br>
+
+    		</div>
+    		<div class="col-sm-4"></div>
+    	</div>
+    </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+<script>
+var closebtns = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < closebtns.length; i++) {
+  closebtns[i].addEventListener("click", function() {
+    document.getElementById("alert").style.display = "none";
+  });
+}
+var attempt = 5; 
+function validate(){
+var username = document.getElementById("username").value;
+var password = document.getElementById("password").value;
+if ( username == "Admin" && password == "formget#123"){
+window.location ="AdminP.html"; 
+return false;
+}
+else{
+var Username=document.getElementById("username")
+var Password=document.getElementById("password")
+Username.value=""
+Password.value=""
+attempt --;
+document.getElementById("alert").style.display = "block";
+
+if( attempt == 0){
+document.getElementById("username").disabled = true;
+document.getElementById("password").disabled = true;
+document.getElementById("submit").disabled = true;
+return false;
+}
+}
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+  </body>
+</html>
